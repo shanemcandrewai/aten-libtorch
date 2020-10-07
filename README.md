@@ -26,10 +26,6 @@ This CMakeLists.txt manages the building of a simple C++ program based on the AT
 
 #### Cmake options
 
-##### RESET
-
-This restores the PyTorch source working tree from HEAD and changes some of the CMake scripts and header files to allow building as a suddirectory. This can be enabled by passing the option `-D RESET=1`.
-
 ##### DEBUG
 
 The build has debugging information by default. This can be disabled by passing the option -D DEBUG=0.
