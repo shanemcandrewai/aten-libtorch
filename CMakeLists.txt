@@ -4,7 +4,11 @@ project(aten_libtorch)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_BUILD_TYPE "Debug")
+
+option(DEBUG "Debugging information" ON)
+if(DEBUG)
+  set(CMAKE_BUILD_TYPE "Debug")
+endif()
 
 set(PYTORCH_SRC_DIR ../pytorch)
 set(LIBTORCH_SRC_DIR ../build_libtorch/build)
