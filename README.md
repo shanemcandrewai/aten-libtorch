@@ -20,7 +20,7 @@ This CMakeLists.txt manages the building of a simple C++ program based on the AT
 
 
 ## Usage
-### Restore, preprocess, generate the project buildsystem and redirect output to file
+### Generate the project buildsystem
 
     cmake -S . -B build
 
