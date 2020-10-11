@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(PYTORCH_SRC_DIR ../pytorch)
-set(LIBTORCH_SRC_DIR ../build_libtorch/build)
-set(LIBTORCH_LIB_DIR ${CMAKE_SOURCE_DIR}/${LIBTORCH_SRC_DIR}/lib/Debug)
+set(LIBTORCH_SRC_DIR ../libtorch_subdir/build)
+set(LIBTORCH_LIB_DIR ${CMAKE_SOURCE_DIR}/${LIBTORCH_SRC_DIR}/lib)
 
 add_executable(aten_min aten_min.cpp)
 target_include_directories(aten_min PUBLIC ${PYTORCH_SRC_DIR})
