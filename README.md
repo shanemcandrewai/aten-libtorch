@@ -24,7 +24,7 @@ This CMakeLists.txt manages the building of a simple C++ program based on the AT
     cmake -S . -B build
 #### Cmake options
 ##### CMAKE_BUILD_TYPE 
-The default buid type is "Release". For a debug build pass option `-D CMAKE_BUILD_TYPE=Debug`
+The default buid type is `Release`. For a debug build pass option `-D CMAKE_BUILD_TYPE=Debug`
 ### Build the project
     cmake --build build
 ### Execute
