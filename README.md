@@ -22,6 +22,8 @@ The default buid type is `Release`. For a debug build pass option `-D CMAKE_BUIL
 ##### CMAKE_CXX_FLAGS
 ###### GCC
 `-Og` enables optimizations that do not interfere with debugging
+#### Example
+cmake -DRESET=1 -DCMAKE_CXX_FLAGS=-Og -DCMAKE_BUILD_TYPE=Debug -S . -B build
 ### Build the project
     cmake --build build
 ### Execute
