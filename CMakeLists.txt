@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 option(USE_SHARED_LIBS "Use share PyTorch libraries" ON)
 set(PYTORCH_SRC_DIR ../pytorch)
+<<<<<<< HEAD
 set(LIBTORCH_BIN_DIR build)
 if(USE_SHARED_LIBS) 
   set(LIBTORCH_LIB_DIR ${CMAKE_SOURCE_DIR}/${LIBTORCH_BIN_DIR}/lib/shared)
@@ -14,12 +15,19 @@ else()
   set(LIBTORCH_LIB_DIR ${CMAKE_SOURCE_DIR}/${LIBTORCH_BIN_DIR}/lib/static)
 endif()
 set(LIBTORCH_DLL_DIR ${CMAKE_SOURCE_DIR}/${LIBTORCH_BIN_DIR}/bin)
+=======
+set(PYTORCH_BUILD_DIR ${PYTORCH_SRC_DIR}/build)
+set(PYTORCH_LIB_DIR ${CMAKE_SOURCE_DIR}/${PYTORCH_BUILD_DIR}/lib)
+set(PYTORCH_DLL_DIR ${CMAKE_SOURCE_DIR}/${PYTORCH_BUILD_DIR}/bin)
+set(ATEN_LIB_DIR ${CMAKE_BINARY_DIR}/lib)
+set(ATEN_DLL_DIR ${CMAKE_BINARY_DIR}/bin)
+>>>>>>> improve
 
 add_executable(aten_libtorch aten_min.cpp)
 target_include_directories(aten_libtorch PUBLIC ${PYTORCH_SRC_DIR})
 target_include_directories(aten_libtorch PUBLIC ${PYTORCH_SRC_DIR}/aten/src)
-target_include_directories(aten_libtorch PUBLIC ${LIBTORCH_BIN_DIR})
-target_include_directories(aten_libtorch PUBLIC ${LIBTORCH_BIN_DIR}/aten/src)
+target_include_directories(aten_libtorch PUBLIC ${PYTORCH_BUILD_DIR})
+target_include_directories(aten_libtorch PUBLIC ${PYTORCH_BUILD_DIR}/aten/src)
 
 if(USE_SHARED_LIBS) 
   add_library(torch SHARED IMPORTED)
@@ -31,6 +39,7 @@ endif()
 
 
 if(MSVC)
+<<<<<<< HEAD
   set_target_properties(torch PROPERTIES IMPORTED_IMPLIB ${LIBTORCH_LIB_DIR}/torch_cpu.lib)
   set_target_properties(c10 PROPERTIES IMPORTED_IMPLIB ${LIBTORCH_LIB_DIR}/c10.lib)
 
@@ -49,6 +58,24 @@ else()
   else()
     set_target_properties(torch PROPERTIES IMPORTED_LOCATION ${LIBTORCH_LIB_DIR}/libtorch_cpu.a)
     set_target_properties(c10 PROPERTIES IMPORTED_LOCATION ${LIBTORCH_LIB_DIR}/libc10.a)
+=======
+  set_target_properties(torch PROPERTIES IMPORTED_IMPLIB ${PYTORCH_LIB_DIR}/torch_cpu.lib)
+  set_target_properties(c10 PROPERTIES IMPORTED_IMPLIB ${PYTORCH_LIB_DIR}/c10.lib)
+  set_target_properties(torch PROPERTIES IMPORTED_LOCATION ${PYTORCH_DLL_DIR}/torch_cpu.dll)
+  set_target_properties(c10 PROPERTIES IMPORTED_LOCATION ${PYTORCH_DLL_DIR}/c10.dll)
+else()
+  if(USE_SHARED_LIBS)
+    file(MAKE_DIRECTORY ${ATEN_LIB_DIR}/shared)
+    if(NOT EXISTS ${ATEN_LIB_DIR}/shared/libtorch_cpu.so)
+      file(COPY ${PYTORCH_LIB_DIR}/libtorch_cpu.so DESTINATION ${ATEN_LIB_DIR}/shared)
+    endif()
+    set_target_properties(torch PROPERTIES IMPORTED_LOCATION ${ATEN_LIB_DIR}/shared/libtorch_cpu.so)
+    if(NOT EXISTS ${ATEN_LIB_DIR}/shared/libc10.so)
+      file(COPY ${PYTORCH_LIB_DIR}/libc10.so DESTINATION ${ATEN_LIB_DIR}/shared)
+    endif()
+    set_target_properties(c10 PROPERTIES IMPORTED_LOCATION ${ATEN_LIB_DIR}/shared/libc10.so)
+  else()
+>>>>>>> improve
   endif()
 endif()
 target_link_libraries(aten_libtorch torch c10)
