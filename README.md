@@ -30,7 +30,10 @@ The default build links against shared libraries. For a static build pass option
 ### Build the project
     cmake --build build
 ### Execute
+#### GCC
     ./build/aten_libtorch
+#### MSVC
+    build\[CMAKE_BUILD_TYPE]\aten_libtorch.exe
 ### Cleaning / trouble-shooting
 #### Linux
     rm build/CMakeCache.txt
