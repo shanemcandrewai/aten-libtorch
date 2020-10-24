@@ -18,10 +18,13 @@ This CMakeLists.txt manages the building of a simple C++ program based on the AT
     cmake -S . -B build
 #### Cmake options
 ##### CMAKE_BUILD_TYPE 
-The default buid type is `Release`. For a debug build pass option `-D CMAKE_BUILD_TYPE=Debug`
+The default build type is `Release`. For a debug build pass option `-D CMAKE_BUILD_TYPE=Debug`
 ##### CMAKE_CXX_FLAGS
 ###### GCC
 `-Og` enables optimizations that do not interfere with debugging
+##### LINK_SHARED_LIBS 
+###### GCC
+The default build links against shared libraries. For a static build pass option `-D LINK_SHARED_LIBS=0
 #### Example
     cmake -DCMAKE_CXX_FLAGS=-Og -DCMAKE_BUILD_TYPE=Debug -S . -B build
 ### Build the project
