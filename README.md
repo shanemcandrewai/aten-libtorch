@@ -23,7 +23,7 @@ The default build type is `Release`. For a debug build pass option `-D CMAKE_BUI
 `-Og` enables optimizations that do not interfere with debugging
 ##### LINK_SHARED_LIBS 
 ###### GCC
-The default build links against shared libraries. For a static build pass option `-D LINK_SHARED_LIBS=0
+The default build links against shared libraries. For a static build pass option `-D LINK_SHARED_LIBS=0`
 #### Example
     cmake -DCMAKE_CXX_FLAGS=-Og -DCMAKE_BUILD_TYPE=Debug -S . -B build
 ### Build the project
