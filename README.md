@@ -15,6 +15,17 @@ This CMakeLists.txt manages the building of a simple C++ program based on the AT
 ## Usage
 ### Copy required files from `PYTORCH_BUILD_DIR` and generate the project buyldsystem
     cmake -S . -B build
+### Build the project
+    cmake --build build
+### Execute
+#### GCC
+    ./build/aten_libtorch
+#### MSVC
+    build\[CMAKE_BUILD_TYPE]\aten_libtorch.exe
+### Example
+    cmake -DCMAKE_CXX_FLAGS=-Og -DCMAKE_BUILD_TYPE=Debug -S . -B build
+    cmake --build build
+    ./build/aten_libtorch
 #### Cmake options
 ##### CMAKE_BUILD_TYPE 
 The default build type is `Release`. For a debug build pass option `-D CMAKE_BUILD_TYPE=Debug`
@@ -24,15 +35,6 @@ The default build type is `Release`. For a debug build pass option `-D CMAKE_BUI
 ##### LINK_SHARED_LIBS 
 ###### GCC
 The default build links against shared libraries. For a static build pass option `-D LINK_SHARED_LIBS=0`
-#### Example
-    cmake -DCMAKE_CXX_FLAGS=-Og -DCMAKE_BUILD_TYPE=Debug -S . -B build
-### Build the project
-    cmake --build build
-### Execute
-#### GCC
-    ./build/aten_libtorch
-#### MSVC
-    build\[CMAKE_BUILD_TYPE]\aten_libtorch.exe
 ### Cleaning / trouble-shooting
 #### Linux
     rm build/CMakeCache.txt
